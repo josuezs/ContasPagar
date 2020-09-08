@@ -1,19 +1,27 @@
 
 # Contas a pagar
 
-Aplicação desenvolvida em EJB, JPA com Hibernate. Possui uma interface simples em Primefaces, bem como um serviço RESTfull para incluir e obter contas a pagar.
+Aplicação desenvolvida na IDE eclipse, utilizando Java 8, EJB, JPA com Hibernate e Liquibase.
+
+Possui uma interface simples em Primefaces, bem como um serviço RESTfull para incluir e obter contas a pagar.
+
+É possível rodar alguns casos de teste elaborados em JUnit 5, para validar o cálculo de multas e juros da aplicação.
+
 
 ## Instruções para deploy
 
 - No seu banco criar o database "deliver_it", enquanto que o liquibase se encarregará de criar a estrutura de tabelas. O projeto está configurado para rodar o Liquibase via Servlet Listener, ocorrendo no deploy da aplicação de forma automática.
 - No servidor de aplicação configurar um datasource "java:jboss/datasources/contasPagar" apontando para o database criado.
 
+
 ## Uso
 
-- O endpoint para das contas a pagar fica na URL:
+- O endpoint para manipulação das contas a pagar fica na URL:
 http://localhost:8080/ContasPagarWeb/service/conta
 	- GET: lista as contas cadastradas
-	- PUT: cadastra uma conta, onde deve enviar o body abaixo na sua request:
+	- PUT: cadastra uma conta
+	
+Exemplo do body para a request de inclusão de conta:
 {
  	"nome": "Joao",
 	"vlrOriginal": "100.21",
@@ -21,10 +29,12 @@ http://localhost:8080/ContasPagarWeb/service/conta
 	"dtaPagamento": "2020-09-07"
 }
 
+
 ## Regra de negócio
 
 - Não foi considerado cálculo de juros compostos. Ou seja, a multa diária incide sempre sobre o valor base.
 - As contas são únicas por nome e vencimento.
+
 
 ## Considerações
 
