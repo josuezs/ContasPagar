@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:html="http://cleansoft.com.br/facelets">
+<ui:decorate template="/pages/template.xhtml">
+	<ui:define name="titulo">Lista de contas</ui:define>
+	<ui:define name="conteudo">
+
+		<p:dataTable var="conta" value="#{contasMB.contas}">
+			<p:column headerText="Nome">
+				<h:outputText value="#{conta.nome}" />
+			</p:column>
+			<p:column headerText="Vcto">
+				<h:outputText value="#{conta.dtaVencimento}" />
+			</p:column>
+			<p:column headerText="Pgto">
+				<h:outputText value="#{conta.dtaPagamento}" />
+			</p:column>
+			<p:column headerText="R$ Original">
+				<h:outputText value="#{conta.vlrOriginal}" />
+			</p:column>
+			<p:column headerText="R$ Corrigido">
+				<h:outputText value="#{conta.vlrCorrigido}" />
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:decorate>
+</html>

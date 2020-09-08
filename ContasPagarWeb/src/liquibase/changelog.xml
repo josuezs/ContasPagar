@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd 
+   http://www.liquibase.org/xml/ns/dbchangelog 
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+	<property name="schema.name" value="public" />
+
+	<changeSet id="DB_1" author="Josue">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists schemaName="${schema.name}" tableName="contas" />
+			</not>
+		</preConditions>
+		<comment>Criação da tabela 'contas'.</comment>
+		<createSequence sequenceName="contas_seq"
+			incrementBy="1" minValue="1" startValue="1" cacheSize="1" />
+		<createTable schemaName="${schema.name}" tableName="contas">
+			<column name="id" type="BIGINT" defaultValueSequenceNext="contas_seq">
+				<constraints nullable="false" />
+			</column>
+			<column name="nome" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="vlr_original" type="NUMERIC(11,2)">
+				<constraints nullable="false" />
+			</column>
+			<column name="vlr_corrigido" type="NUMERIC(11,2)">
+				<constraints nullable="false" />
+			</column>
+			<column name="dta_vencimento" type="DATE">
+				<constraints nullable="false" />
+			</column>
+			<column name="dta_pagamento" type="DATE">
+				<constraints nullable="false" />
+			</column>
+			<column name="num_dias_atraso" type="NUMERIC(4)">
+				<constraints nullable="false" />
+			</column>
+			<column name="per_multa" type="NUMERIC(5,2)">
+				<constraints nullable="false" />
+			</column>
+			<column name="per_juros_dia" type="NUMERIC(5,2)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addPrimaryKey columnNames="id" constraintName="contas_pk"
+			tableName="contas" />
+	</changeSet>
+
+</databaseChangeLog>
