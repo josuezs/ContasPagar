@@ -18,7 +18,7 @@ Possui uma interface simples em Primefaces, bem como um serviço RESTfull para i
 
 - O endpoint para manipulação das contas a pagar fica na URL:
 http://localhost:8080/ContasPagarWeb/service/conta
-	- GET: lista as contas cadastradas
+	- GET: obter uma lista com as contas cadastradas
 	- PUT: cadastra uma conta
 
 Exemplo do body para a request de inclusão de conta:
